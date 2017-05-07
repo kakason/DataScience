@@ -17,6 +17,16 @@ import sklearn.model_selection
 import sklearn.linear_model
 import sklearn.preprocessing
 
+class Pair:
+    def __init__(self):
+        self.tp = 0
+        self.fp = 0
+
+class Data:
+    def __init__(self):
+        self.predict = 0
+        self.expect = 0
+
 
 def load_train_test_data(train_ratio=.5):
     data = pandas.read_csv('HTRU_2.csv', header=None, names=['x%i' % (i) for i in xrange(8)] + ['y'])
@@ -44,16 +54,16 @@ def logistic_function(Xi, theta):
     return 1.0/(1 + numpy.exp(-numpy.dot(Xi, theta)))
 
 
-def logreg_sgd(X, y, alpha = .002, iters = 100000, eps=1e-4):
+def logreg_sgd(X, y, alpha = .001, iters = 100000, eps=1e-4):
 
-    n, d = X.shape # (n, d)=(8949,8) y.shape=(8949,)
+    n, d = X.shape #(n, d)=(8949,8) y.shape=(8949,)
     theta = numpy.zeros((d, 1))
     y_hat = (1.0 / (1 + numpy.exp(numpy.dot(-X, theta)))).reshape(n)
     converged = False
     k = 0
     error = 0
 
-    while k <= 25:
+    while k <= 50:
         for i in range(n):
             y_hat[i] = logistic_function(X[i], theta)
             L_theta = numpy.dot(X[i], y_hat[i] - y[i])
@@ -65,7 +75,6 @@ def logreg_sgd(X, y, alpha = .002, iters = 100000, eps=1e-4):
             #if abs(cel - error) <= eps:
             #    converged = True
             #error = cel
-
         print(k)
         k += 1
 
@@ -77,11 +86,44 @@ def predict_prob(X, theta):
 
 
 def plot_roc_curve(y_test, y_prob):
-    # TODO: compute tpr and fpr of different thresholds
-    print(y_test)
-    print(y_prob)
-    tpr = []
-    fpr = []
+    n = len(y_test) #n=8949
+    tpr = [0 for x in range(n+1)]
+    fpr = [0 for x in range(n+1)]
+    tp = 0
+    fp = 0
+    true_number = 0
+    false_number = 0
+
+    tmp = [Data() for x in range(n+1)]
+    table = [Pair() for x in range(n+1)]
+
+    table[0].tp = 0
+    table[0].fp = 0
+    tmp[0].predict = 0
+    tmp[0].expect = 0
+
+    for i in range(1, n+1):
+        tmp[i].predict = y_prob[i-1]
+        tmp[i].expect = y_test[i-1]
+        if y_test[i-1] == 1:
+            true_number += 1
+    false_number = n - true_number #true_number=768
+
+    tmp.sort(key = lambda x:x.predict, reverse = True)
+
+    for i in range(0, n):
+        if tmp[i].expect == 1:
+            tp += 1
+        else:
+            fp += 1
+        table[i+1].tp = tp
+        table[i+1].fp = fp
+
+    for i in range(1, n+1):
+        tpr[i] = table[i].tp / true_number
+        fpr[i] = table[i].fp / false_number
+        print(fpr[i], tpr[i])
+
     plt.plot(fpr, tpr)
     plt.xlabel("FPR")
     plt.ylabel("TPR")
@@ -101,7 +143,7 @@ def main(argv):
     print("Logreg train accuracy: %f" % (sklearn.metrics.accuracy_score(y_train, y_prob > .5)))
     y_prob = predict_prob(X_test_scale, theta)
     print("Logreg test accuracy: %f" % (sklearn.metrics.accuracy_score(y_test, y_prob > .5)))
-    #plot_roc_curve(y_test.flatten(), y_prob.flatten())
+    plot_roc_curve(y_test.flatten(), y_prob.flatten())
 
 
 if __name__ == "__main__":
