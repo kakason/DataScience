@@ -1,0 +1,11 @@
+# Pycharm project files
+
+*.pyc
+.idea
+
+
+# Emacs temporary files
+
+\#*\#
+*~
+.\#*
