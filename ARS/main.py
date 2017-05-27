@@ -1,5 +1,9 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import sys
 import load_csv
+
 
 def main(argv):
     load_csv.run()
