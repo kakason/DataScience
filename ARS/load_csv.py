@@ -1,5 +1,6 @@
 import pandas
-import unit_test
+import statistics
+
 
 class fb_pages(object):
 
@@ -17,6 +18,7 @@ class fb_users(object):
         self.birthday = 0
 
 # 100(00, 01,... 99) .csv files need to be loaded
+
 class fb_user_likes(object):
 
     def __init__(self):
@@ -42,18 +44,34 @@ def load_fb_users():
 
     return X
 
+
 def load_fb_user_likes():
-    data = pandas.read_csv('./facebook_user_likes_00.csv')
+    res = [[], []]
+    for i in range(99):
+        if i < 10:
+            data = pandas.read_csv('./facebook_user_likes_0%d.csv' % i)
+        else:
+            data = pandas.read_csv('./facebook_user_likes_%d.csv' % i)
+        feature_col = ['user_id', 'page_id', 'page_name', 'category', 'created_time']
+        X = data[feature_col].as_matrix()
+        a = statistics.run(X)
+        for j in range(len(a[0])):
+            res[0].append(a[0][j])
+            res[1].append(a[1][j])
+    return res
 
-    feature_col = ['user_id', 'page_id', 'page_name', 'category', 'created_time']
-    X = data[feature_col].as_matrix()
-
-    return X
 
 def run():
     matrix_pages = load_fb_pages()
     matrix_users = load_fb_users()
-    matrix_likes = load_fb_user_likes()
 
-    unit_test.run(matrix_pages, matrix_users, matrix_likes)
+    '''
+    users_hobby can be used to build decision tree
+    it is an 2 * n array, n is the amount of id
+    the first row is user id, the second row is the user's hobby
+    '''
+    users_hobby = load_fb_user_likes()
+
+    #unit_test.run(matrix_pages, matrix_users, matrix_likes)
+
 
