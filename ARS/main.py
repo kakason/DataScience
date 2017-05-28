@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import load_csv
+import data
 
 
 def main(argv):
-    load_csv.run()
+    # load_csv.run()
+    data.count()
 
 if __name__ == "__main__":
     main(sys.argv)

@@ -27,7 +27,7 @@ class fb_user_likes(object):
         self.created_time = 0
 
 
-def load_fb_pages(folder_name):
+def load_fb_pages():
     data = pandas.read_csv(folder_name + 'facebook_pages.csv')
 
     feature_col = ['id', 'name', 'category']
@@ -36,7 +36,7 @@ def load_fb_pages(folder_name):
     return X
 
 
-def load_fb_users(folder_name):
+def load_fb_users():
     data = pandas.read_csv(folder_name + 'facebook_user.csv')
 
     feature_col = ['id', 'gender', 'location_name', 'birthday']
@@ -45,8 +45,12 @@ def load_fb_users(folder_name):
     return X
 
 
-def load_fb_user_likes(folder_name):
-    data = pandas.read_csv(folder_name + 'facebook_user_likes_00.csv')
+def load_fb_user_likes(i):
+    if i < 10:
+        string = "0" + str(i)
+    else:
+        string = str(i)
+    data = pandas.read_csv(folder_name + 'facebook_user_likes_' + string + '.csv')
 
     feature_col = ['user_id', 'page_id', 'page_name', 'category', 'created_time']
     X = data[feature_col].as_matrix()
@@ -55,9 +59,10 @@ def load_fb_user_likes(folder_name):
 
 
 def run():
-    folder_name = "./Social_Network_Data/"
-    matrix_pages = load_fb_pages(folder_name)
-    matrix_users = load_fb_users(folder_name)
-    matrix_likes = load_fb_user_likes(folder_name)
+    matrix_pages = load_fb_pages()
+    matrix_users = load_fb_users()
+    matrix_likes = load_fb_user_likes(0)
 
     unit_test.run(matrix_pages, matrix_users, matrix_likes)
+
+folder_name = "./Social_Network_Data/"
