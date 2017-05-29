@@ -1,6 +1,7 @@
 import load_csv
 
 
+# for testing
 def count():
     cat_dict = dict()
 

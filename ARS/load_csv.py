@@ -55,15 +55,11 @@ def load_fb_user_likes(i):
         string = str(i)
     data = pandas.read_csv(folder_name + 'facebook_user_likes_' + string + '.csv')
 
-version_1
 
 def run():
     matrix_pages = load_fb_pages()
     matrix_users = load_fb_users()
-fff776288aa24d426d85be28c756b53f5a9c1ee7
     matrix_likes = load_fb_user_likes(0)
-
-version_1
 
     '''
     users_hobby can be used to build decision tree
