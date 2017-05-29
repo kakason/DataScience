@@ -5,16 +5,18 @@ import uniout
 
 def switch(argument):
     # ------------Hobbies-------------
-    # Only list the meaningful hobbies, the remainder is regarded as ignorable
+    # Only list the meaningful hobbies, the remainder is regarded as unimportant and ignorable
     return {
         'Local business': '本地商家',
         'Local Business': '本地商家',
         'Community': '社群',
         'Government organization': '政府機關',
+        'Government Organization': '政府機關',
         'Product/service': '產品／服務',
         'Product/Service': '產品／服務',
         'Author': '作家',
         'Movie theater': '電影院',
+        'Movie Theater': '電影院',
         'Internet/software': '網路／軟體',
         'Internet/Software': '網路／軟體',
         'Food/grocery': '食品／雜貨',
@@ -49,11 +51,14 @@ def switch(argument):
         'Video game': '電玩遊戲',
         'Video Game': '電玩遊戲',
         'Non-profit organization': '非營利組織',
+        'Non-Profit Organization': '非營利組織',
+        'Telecommunication': '電信',
         'Athlete': '運動員',
         'Public figure': '公眾人物',
         'Public Figure': '公眾人物',
         'Travel/leisure': '旅遊／休閒',
         'Local/travel website': '旅遊／休閒',
+        'Local/Travel website': '旅遊／休閒',
         'Automobiles and parts': '汽車',
         'Cars': '汽車',
         'Automotive': '汽車',
@@ -68,6 +73,8 @@ def switch(argument):
         'Jewelry/Watches': '珠寶/手錶',
         'Software': '軟體',
         'Professional services': '專業服務',
+        'Entertainment website': '娛樂網站',
+        'Entertainment Website': '娛樂網站',
         'Hospital/clinic': '醫院／診所',
         'Hospital/Clinic': '醫院／診所',
         'Pet supplies': '寵物',
@@ -80,7 +87,7 @@ def switch(argument):
         'Farming/agriculture': '養殖／農業',
         'Farming/Agriculture': '養殖／農業',
         'Baby goods/kids goods': '嬰兒用品／兒童用品',
-        'Baby Goods/kids Goods': '嬰兒用品／兒童用品',
+        'Baby Goods/Kids Goods': '嬰兒用品／兒童用品',
         'Retail and consumer merchandise': '購物／零售',
         'Landmark': '地標',
         'Actor/director': '演員/導演',
@@ -91,6 +98,7 @@ def switch(argument):
         'Magazine': '雜誌',
         'Furniture': '傢俱',
         'Outdoor gear/sporting goods': '戶外用品/體育用品',
+        'Outdoor gear/Sporting goods': '戶外用品/體育用品',
         'Home decor': '傢俱',
         'Designer': '設計師',
     }.get(argument, argument)
