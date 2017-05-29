@@ -7,7 +7,7 @@ import load_csv
 
 def count():
     matrix = []
-    user_dict = {}
+    user_dict = dict()
     user_X = load_csv.load_fb_users()
     user_len = len(user_X)
 
@@ -21,12 +21,12 @@ def count():
                 tmp_list.append(user_X[i][j])
 
         tmp_list.extend([0] * 4)
-        temp = user_X[i][0]
-        user_dict[temp] = i
+        tmp_user = user_X[i][0]
+        user_dict[tmp_user] = i
         matrix.append(tmp_list)
 
     user_num = len(user_dict)
-    cat_arr = [dict() for x in range(user_num)]
+    user_cat_dict = [dict() for x in range(user_num)]
 
     for k in range(100):
         print k
@@ -40,10 +40,7 @@ def count():
             time = int(time_arr[1])
             if user in user_dict:
                 index = user_dict[user]
-                if cat in cat_arr[index]:
-                    cat_arr[index][cat] += 1
-                else:
-                    cat_arr[index][cat] = 1
+                user_cat_dict[index][cat] = user_cat_dict[index].get(cat, 0) + 1
 
                 if 6 <= time < 12:
                     matrix[index][4] += 1
@@ -54,16 +51,19 @@ def count():
                 else:
                     matrix[index][7] += 1
 
+            else:
+                print "error"
+
     for i in range(user_num):
-        if len(cat_arr[i]) == 0:
+        if len(user_cat_dict[i]) == 0:
             matrix[i].append("nan")
         else:
             cat = ""
             num = 0
-            for x in cat_arr[i]:
-                if cat_arr[i][x] > num:
+            for x in user_cat_dict[i]:
+                if user_cat_dict[i][x] > num:
                     cat = x
-                    num = cat_arr[i][x]
+                    num = user_cat_dict[i][x]
 
             matrix[i].append(cat)
 

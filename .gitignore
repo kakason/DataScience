@@ -1,17 +1,15 @@
 # Pycharm project files
-
 *.pyc
 .idea
 
 
 # Emacs temporary files
-
 \#*\#
 *~
 .\#*
 
 
 # Project data files
-
 Social_Network_Data
-out.*
+*.csv
+*.txt
