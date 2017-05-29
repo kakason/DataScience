@@ -3,7 +3,7 @@
 
 
 # from Shuan66
-def switch(argument):
+def cat_trans(s):
     # ------------Hobbies-------------
     # Only list the meaningful hobbies, the remainder is regarded as unimportant and ignorable
     return {
@@ -100,5 +100,27 @@ def switch(argument):
         'Outdoor gear/sporting goods': '戶外用品/體育用品',
         'Outdoor gear/Sporting goods': '戶外用品/體育用品',
         'Home decor': '傢俱',
-        'Designer': '設計師',
-    }.get(argument, argument)
+        'Designer': '設計師'
+    }.get(s, s)
+
+
+# encode location
+def loc_trans(s):
+    return {
+        "基隆市": 0,
+        "台北市": 1,
+        "新北市": 2,
+        "新竹市": 3,
+        "苗栗市": 4,
+        "台中市": 5,
+        "彰化市": 6,
+        "雲林市": 7,
+        "南投市": 8,
+        "嘉義市": 9,
+        "台南市": 10,
+        "高雄市": 11,
+        "屏東市": 12,
+        "宜蘭市": 13,
+        "花蓮市": 14,
+        "台東市": 15
+    }.get(s, 1)
