@@ -41,6 +41,7 @@ def data_and_target():
     # list used to count total likes for each user
     likes_ls = [0] * user_num
 
+    # 100
     for k in range(100):
         print k
         X = load_csv.load_fb_user_likes(k)
@@ -90,6 +91,7 @@ def data_and_target():
             # calculate percentage for each time interval (result is 0 ~ 10)
             for j in range(3, 7):
                 data_matrix[i][j] = int(data_matrix[i][j] * 10 / likes_ls[i])
+
             cat = ""
             num = 0
             # calculate most favorite category for each user
