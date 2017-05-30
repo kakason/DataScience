@@ -2,7 +2,7 @@
 
 
 def is_hobby(arg):
-    return{
+    return {
 
         # merge the hobbies
         '電影院': '電影',
@@ -127,7 +127,6 @@ def is_hobby(arg):
         '養殖／農業': '養殖／農業',
         '嬰兒用品／兒童用品': '嬰兒用品／兒童用品',
         '攝影師': '攝影師',
-
 
         # not supposed to be a hobby, named 'not_a_hobby'
         '醫院／診所': 'not_a_hobby',
