@@ -2,14 +2,13 @@
 *.pyc
 .idea
 
-
 # Emacs temporary files
 \#*\#
 *~
 .\#*
 
-
 # Project data files
 Social_Network_Data
 *.csv
 *.txt
+*.pdf
