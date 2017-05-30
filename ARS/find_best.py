@@ -7,10 +7,11 @@ import data
 def get_and_find():
     X, y = data.data_and_target()
     max_num = 0
-    for i in range(1, 127):
+    current = 0
+    for i in range(1, 128):
         new_X = []
         for x in X:
-            temp = i;
+            temp = i
             tmp_list = []
             for j in range(7):
                 r = temp % 2
