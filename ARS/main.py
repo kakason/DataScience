@@ -1,8 +1,14 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import sys
-import load_csv
+import decision_tree
+
 
 def main(argv):
-    load_csv.run()
+    # run decision tree classifier
+    decision_tree.classify()
+
 
 if __name__ == "__main__":
     main(sys.argv)
