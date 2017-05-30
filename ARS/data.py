@@ -3,6 +3,7 @@
 
 import load_csv
 import translate
+import hobby_merge
 
 
 def data_and_target():
@@ -51,6 +52,7 @@ def data_and_target():
                 # fix common errors
                 cat = cat.replace("社區", "社群")
                 cat = translate.cat_trans(cat)
+                cat = hobby_merge.is_hobby(cat)
 
             time_str = X[i][4]
             time_str = time_str.split()
@@ -59,7 +61,8 @@ def data_and_target():
             time = int(time_str[0])
             if user in user_dict:
                 index = user_dict[user]
-                user_cat_dict[index][cat] = user_cat_dict[index].get(cat, 0) + 1
+                if cat != "not_a_hobby":
+                    user_cat_dict[index][cat] = user_cat_dict[index].get(cat, 0) + 1
 
                 likes_ls[index] += 1
                 # morning
