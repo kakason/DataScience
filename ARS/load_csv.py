@@ -46,7 +46,6 @@ def load_fb_users():
 
     return X
 
-fff776288aa24d426d85be28c756b53f5a9c1ee7
 
 def load_fb_user_likes(i):
     if i < 10:
