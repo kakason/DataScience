@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import load_csv
 
 
 # from Shuan66
@@ -124,3 +125,21 @@ def loc_trans(s):
         "花蓮市": 14,
         "台東市": 15
     }.get(s, 1)
+
+
+def gender_trans(s):
+    value = 0.5
+    if s == "男性":
+        value = 1
+    elif s == "女性":
+        value = 0
+
+    return value
+
+
+def age_trans(s):
+    if not load_csv.pandas.isnull(s):
+        int_arr = s.split("/")
+        return 2017 - int(int_arr[0])
+    else:
+        return 30

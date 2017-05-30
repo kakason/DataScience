@@ -31,7 +31,7 @@ def test_object(a):
         tmp[i].id = a[i][0]
         tmp[i].name = a[i][1]
         tmp[i].category = a[i][2]
-        print ("%d, %s, %s" % (tmp[i].id, tmp[i].name, tmp[i].category))  # correct
+        print ("%d, %s, %s" % (tmp[i].id, tmp[i].name, tmp[i].category))
 
 
 def run(a, b, c):
