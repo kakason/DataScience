@@ -29,7 +29,7 @@ def get_and_find():
     print "The result is from %d" % current
 
 
-def result(X,y):
+def result(X, y):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=1)
     clf = tree.DecisionTreeClassifier()
 

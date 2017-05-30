@@ -1,5 +1,4 @@
 import pandas
-import unit_test
 
 
 class fb_pages(object):
@@ -11,7 +10,7 @@ class fb_pages(object):
 
 class fb_users(object):
     def __init__(self):
-        self.id = 0  # the id should be independent?
+        self.id = 0
         self.gender = 0
         self.location_name = 0
         self.birthday = 0
@@ -20,7 +19,7 @@ class fb_users(object):
 # 100(00, 01,... 99) .csv files need to be loaded
 class fb_user_likes(object):
     def __init__(self):
-        self.user_id = 0  # the user_id should be independent?
+        self.user_id = 0
         self.page_id = 0
         self.page_name = 0
         self.category = 0
@@ -50,6 +49,7 @@ def load_fb_user_likes(i):
         string = "0" + str(i)
     else:
         string = str(i)
+
     data = pandas.read_csv(folder_name + 'facebook_user_likes_' + string + '.csv')
 
     feature_col = ['user_id', 'page_id', 'page_name', 'category', 'created_time']
@@ -63,7 +63,8 @@ def run():
     matrix_users = load_fb_users()
     matrix_likes = load_fb_user_likes(0)
 
-    unit_test.run(matrix_pages, matrix_users, matrix_likes)
+    users_hobby = load_fb_user_likes()
 
+    #unit_test.run(matrix_pages, matrix_users, matrix_likes)
 
 folder_name = "./Social_Network_Data/"

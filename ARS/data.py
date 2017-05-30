@@ -6,27 +6,44 @@ import translate
 import hobby_merge
 
 
+def time_processing(s):
+    s = s.split()
+    s = s[1].split(":")
+
+    return int(s[0])
+
+
+def output_csv_file(num, data, target):
+    output = open("result.csv", "w")
+    output.write("\"gender\",\"location\",\"age\","
+                 "\"morning\",\"afternoon\",\"night\",\"midnight\",\"category\"\n")
+    for i in range(num):
+        output.write("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %
+                     (data[i][0], data[i][1], data[i][2], data[i][3], data[i][4],
+                      data[i][5], data[i][6], target[i]))
+
+    print "Data matrix and target matrix have completed"
+
+
 def data_and_target():
     data_matrix = []
     user_dict = dict()
-    # load fb user
+
+    # load fb user's information
     user_X = load_csv.load_fb_users()
     user_len = len(user_X)
 
     for i in range(user_len):
         tmp_list = []
-        if user_X[i][1] == "男性":
-            tmp_list.append(0)
-        elif user_X[i][1] == "女性":
-            tmp_list.append(1)
-        else:
-            tmp_list.append(0.5)
+
+        # gender
+        tmp_list.append(translate.gender_trans(user_X[i][1]))
+
+        # location
         tmp_list.append(translate.loc_trans(user_X[i][2]))
-        if not load_csv.pandas.isnull(user_X[i][3]):
-            int_arr = user_X[i][3].split("/")
-            tmp_list.append(2017 - int(int_arr[0]))
-        else:
-            tmp_list.append(30)
+
+        # age
+        tmp_list.append(translate.age_trans(user_X[i][3]))
 
         tmp_list.extend([0] * 4)
         tmp_user = user_X[i][0]
@@ -43,9 +60,10 @@ def data_and_target():
 
     # 100
     for k in range(100):
-        print k
+        print(k)
         X = load_csv.load_fb_user_likes(k)
         likes_len = len(X)
+
         for i in range(likes_len):
             user = X[i][0]
             cat = X[i][3]
@@ -55,17 +73,15 @@ def data_and_target():
                 cat = translate.cat_trans(cat)
                 cat = hobby_merge.is_hobby(cat)
 
-            time_str = X[i][4]
-            time_str = time_str.split()
-            time_str = time_str[1].split(":")
-            # the time when user pressed like
-            time = int(time_str[0])
+            # time process
+            time = time_processing(X[i][4])
             if user in user_dict:
                 index = user_dict[user]
                 if cat != "not_a_hobby":
                     user_cat_dict[index][cat] = user_cat_dict[index].get(cat, 0) + 1
 
                 likes_ls[index] += 1
+
                 # morning
                 if 6 <= time < 12:
                     data_matrix[index][3] += 1
@@ -102,18 +118,6 @@ def data_and_target():
 
             target_matrix.insert(0, cat)
 
-    # reassigned because the length has changed
-    user_num = len(data_matrix)
+    output_csv_file(len(data_matrix), data_matrix, target_matrix)
 
-    # output data matrix and target matrix in csv file format
-    output = open("out.csv", "w")
-    output.write("\"gender\",\"location\",\"age\","
-                 "\"morning\",\"afternoon\",\"night\",\"midnight\",\"category\"\n")
-    for i in range(user_num):
-        output.write("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %
-                     (data_matrix[i][0], data_matrix[i][1], data_matrix[i][2], data_matrix[i][3], data_matrix[i][4],
-                      data_matrix[i][5], data_matrix[i][6], target_matrix[i]))
-
-    # print complete message
-    print "Data matrix and target matrix completed"
     return data_matrix, target_matrix
