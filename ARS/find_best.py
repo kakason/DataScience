@@ -36,5 +36,4 @@ def result(X, y):
     # for building decision tree
     clf.fit(X_train, y_train)
 
-    # print the accuracy (current accuracy is about 0.23)
     return clf.score(X_test, y_test)
