@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import load_csv
 
 
@@ -130,9 +131,9 @@ def loc_trans(s):
 def gender_trans(s):
     value = 0.5
     if s == "男性":
-        value = 1
-    elif s == "女性":
         value = 0
+    elif s == "女性":
+        value = 1
 
     return value
 

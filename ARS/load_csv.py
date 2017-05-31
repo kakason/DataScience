@@ -63,11 +63,6 @@ def run():
     matrix_users = load_fb_users()
     matrix_likes = load_fb_user_likes(0)
 
-    '''
-    users_hobby can be used to build decision tree
-    it is an 2 * n array, n is the amount of id
-    the first row is user id, the second row is the user's hobby
-    '''
     users_hobby = load_fb_user_likes()
 
     #unit_test.run(matrix_pages, matrix_users, matrix_likes)
