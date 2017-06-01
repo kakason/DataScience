@@ -42,9 +42,9 @@ def classify():
     # print the accuracy (current accuracy is about 0.319)
     print clf.score(X_test, y_test)
 
-    # sample predict results
-    out = clf.predict([[0, 0, 0], [0, 0, 10], [0, 10, 0], [0, 10, 10],
-                       [1, 0, 0], [1, 0, 10], [1, 10, 0], [1, 10, 10]])
+    # sample prediction
+    out = clf.predict([[0, 0, 0], [0, 0, 5], [0, 0, 10], [0, 5, 0], [0, 5, 5], [0, 10, 0],
+                       [1, 0, 0], [1, 0, 5], [1, 0, 10], [1, 5, 0], [1, 5, 5], [1, 10, 0]])
     for x in out:
         print x
 
