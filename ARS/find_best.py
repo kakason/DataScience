@@ -29,8 +29,10 @@ def get_and_find():
 
             new_X.append(tmp_list)
         acc = 0
+        # random_state from 0 to 99
         for j in range(100):
             acc += result(new_X, y, j)
+        # average
         tmp_res = acc / 10
         if tmp_res > max_num:
             max_num = tmp_res
