@@ -9,6 +9,7 @@ import find_best
 def main(argv):
     # run decision tree classifier
     decision_tree.classify()
+    # find_best.get_and_find()
 
 
 if __name__ == "__main__":
