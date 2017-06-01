@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import load_csv
-import translate
-import hobby_merge
+import tools.load_csv as load_csv
+import tools.translate as translate
+import tools.hobby_merge as hobby_merge
 
 
 def time_processing(s):
@@ -11,18 +11,6 @@ def time_processing(s):
     s = s[1].split(":")
 
     return int(s[0])
-
-
-def output_csv_file(num, data, target):
-    output = open("result.csv", "w")
-    output.write("\"gender\",\"location\",\"age\","
-                 "\"morning\",\"afternoon\",\"night\",\"midnight\",\"category\"\n")
-    for i in range(num):
-        output.write("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %
-                     (data[i][0], data[i][1], data[i][2], data[i][3], data[i][4],
-                      data[i][5], data[i][6], target[i]))
-
-    print "Data matrix and target matrix have completed"
 
 
 def data_and_target():
@@ -118,6 +106,5 @@ def data_and_target():
 
             target_matrix.insert(0, cat)
 
-    output_csv_file(len(data_matrix), data_matrix, target_matrix)
 
     return data_matrix, target_matrix
