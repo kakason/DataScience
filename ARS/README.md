@@ -1,6 +1,6 @@
 # Ads Recommendation System
 
-It can give you some ads that you might like which based on your **Social Network Data**
+It can give you the ad that you might like which based on your **Social Network Data**
 
 ## Social Network Data
 
@@ -34,15 +34,15 @@ It can give you some ads that you might like which based on your **Social Networ
     * We use relative path to include python files which can make it more clear and readable
     * Folder ``tools`` contains 4 python files.
     * ``load_csv.py`` will load the social network data into our program.
-    * ``hobby_merge.py`` focuses on reducing the number of user's page categories. Since some hobbies actually are referred to the same meaning, we decided to add this python file to avoid this problem. Also, if there are too many categories, it is really hard for the model to learn the pattern from it which can definitely make our accuracy become smaller.
-    * ``translate.py`` will basically encode our features.
-    * ``find_best.py`` will decide which combination of features can make our accuracy better than anyone else.
+    * ``hobby_merge.py`` focuses on reducing the number of user's page categories. Since some hobbies actually are referred to the same meaning, we decided to add this python file to avoid this problem. Also, if there are too many categories, it is really hard for the model to learn some patterns from it which can definitely make our accuracy become smaller.
+    * ``translate.py`` is used to encode our features.
+    * ``find_best.py`` is used to decide which combination of features can make our accuracy better than anyone else.
 
 ## Usage
 
 1. Make sure that you have downloaded the .csv files from the link we provided above(see the hyper link). Remember to choose the **Social Network Data** ones.
 2. Clone our project into your local repository or just download the ZIP file.
-3. Create a folder named ``Social_Network_Data`` inside the folder ``ARS`` and put the whole files which is the Socail Network Data that you have downloaded into it.
+3. Create a folder named ``Social_Network_Data`` inside the folder ``ARS`` and put the whole files(i.e., the Socail Network Data that you have downloaded) into it.
 4. Open Pycharm IDE and run it.
 5. The result will have 2 parts.
    * One is the accuracy which will be printed in the console.
